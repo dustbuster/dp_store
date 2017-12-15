@@ -8,6 +8,8 @@ date_default_timezone_set('America/New_York');
 
 // I name my function files after what they do, html <- content process <- it processes other code
 include('includes/html_process.php');
+// Okay, so this is some of the CRUD classes i made for a project, i know they should probably be a bit more granular, but i need to meet deadlines etd (you get it lol)
+require('app-library/classes.sql.php');
 ?>
 <html lang="en">
     <head>
@@ -60,7 +62,9 @@ include('includes/html_process.php');
                     <h3>Test</h3>
                     <div style='height: 600px;'>
                         <form method='post' action=''>
-
+                            <div style='width: 320px'>
+                                <?=Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle")?>
+                            </div>
                         </form>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
                         <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Submit</button>

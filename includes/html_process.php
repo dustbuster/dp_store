@@ -18,5 +18,35 @@ function Footer_Text(){
     return $text;
 }
 
+// Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle");
+function Order_Dropdown(){
 
+}
+
+$database = 'orders';
+$user = 'root';
+$password = 'dgfsty16';
+$database_host = 'localhost';
+
+function Pick_order_Number_DD($name,$class) {
+    //connection information
+    $s = "";
+    $ret = "";
+    include('connection_strings.php');
+    $con = mysqli_connect($database_host, $user, $password);
+    mysqli_select_db($con,$database) or die("cannot correct Username");
+    $qu = "SELECT order_date, order_id FROM orders";
+    $res = mysqli_query($con,$qu);
+    while ($row = mysqli_fetch_assoc($res)):
+        $order_num = $row['order_id'];
+        $ret .= "<option selected value='$order_num'>$order_num</option>";
+    endwhile;
+    mysqli_close($con);
+    ?>
+    <select name="<?=$name?>" class="<?=$class?>">
+        <option value="">-</option>
+        <?=$ret?>
+    </select>
+    <?php
+}
 ?>
