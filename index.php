@@ -32,7 +32,7 @@ include('includes/html_process.php');
                         <li><a href="#">Nothing</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello Matt!<br></a></li>
                     </ul>
                 </div>
             </div>
@@ -59,9 +59,11 @@ include('includes/html_process.php');
                     <hr>
                     <h3>Test</h3>
                     <div style='height: 600px;'>
-                        <form method='post' >
+                        <form method='post' action=''>
 
                         </form>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+                        <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Submit</button>
                     </div>
                 </div>
                 <div class="col-sm-2 sidenav">
