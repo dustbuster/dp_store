@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<?php
+// DoublePositive Code evaluation
+// Author: dustin horning
+// Date: 12.14.2017
+// I started off with a bootstrap template.
+date_default_timezone_set('America/New_York');
+
+// I name my function files after what they do, html <- content process <- it processes other code
+include('includes/html_process.php');
+?>
+<html lang="en">
+    <head>
+        <?=CSS_Header('doublepositive')?>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="#">Dusty's Store</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Buttons</a></li>
+                        <li><a href="#">That Do</a></li>
+                        <li><a href="#">Nothing</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-2 sidenav">
+                    <p><a href="#">Link</a></p>
+                    <p><a href="#">Link</a></p>
+                    <p><a href="#">Link</a></p>
+                </div>
+                <div class="col-sm-8 text-left">
+                    <h1>Welcome to Dusty's Store! <br>Review Order</h1>
+                    
+                    <hr>
+                    <h3>Test</h3>
+                    <p>Lorem ipsum...</p>
+                </div>
+                <div class="col-sm-2 sidenav">
+                    <div class="well">
+                        <p>Try Gunderson's nuts!</p>
+                        <img class='logo-small' src='images/gundersons.jpg'>
+                    </div>
+                    <div class="well">
+                        <p>The empire needs YOU! <br>Enlist today!</p>
+                        <img class='logo-small' src='images/enlist.jpg'>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="container-fluid text-center">
+            <?=Footer_Text()?>
+        </footer>
+    </body>
+</html>

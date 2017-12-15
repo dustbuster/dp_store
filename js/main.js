@@ -1,0 +1,1 @@
+// I have no idea if I am going to write javascript, but I will make this according to tradition lol
