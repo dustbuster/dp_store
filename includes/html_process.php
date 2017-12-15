@@ -37,9 +37,10 @@ function Pick_order_Number_DD($name,$class) {
     mysqli_select_db($con,$database) or die("cannot correct Username");
     $qu = "SELECT order_date, order_id FROM orders";
     $res = mysqli_query($con,$qu);
+    // $ret .= "<option selected value=''>-</option>";
     while ($row = mysqli_fetch_assoc($res)):
         $order_num = $row['order_id'];
-        $ret .= "<option selected value='$order_num'>$order_num</option>";
+        $ret .= "<option value='$order_num'>$order_num</option>";
     endwhile;
     mysqli_close($con);
     ?>

@@ -27,8 +27,8 @@ class SQL_CRUD {
 
     // NOTE: Functional Programming comes to mind as possibly being helpful here. \
     public function Connect_DB_execute_Close(){
-        include('includes/Femur_Connection_Vars.php');
-        $lk = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        include('includes/connection_strings.php');
+        $lk = mysqli_connect($database_host, $user, $password, $database);
         if (mysqli_connect_errno()) {
             $this->message = "Sorry. There was an issue".mysqli_connect_error();
             $this->update_completed = false;
@@ -81,8 +81,8 @@ class SQL_Counter_Increment extends SQL_CRUD {
     }
     // Same thing as the execute, but the method name has better sounding
     public function Add_one(){
-        include('includes/Femur_Connection_Vars.php');
-        $lk = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        include('includes/connection_strings.php');
+        $lk = mysqli_connect($database_host, $user, $password, $database);
         if (mysqli_connect_errno()) {
             $this->message = "Sorry. There was an issue".mysqli_connect_error();
             $this->update_completed = false;
@@ -94,8 +94,8 @@ class SQL_Counter_Increment extends SQL_CRUD {
         mysqli_close($lk);
     }
     public function Subtract_one(){
-        include('includes/Femur_Connection_Vars.php');
-        $lk = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        include('includes/connection_strings.php');
+        $lk = mysqli_connect($database_host, $user, $password, $database);
         if (mysqli_connect_errno()) {
             $this->message = "Sorry. There was an issue".mysqli_connect_error();
             $this->update_completed = false;
@@ -108,8 +108,8 @@ class SQL_Counter_Increment extends SQL_CRUD {
         mysqli_close($lk);
     }
     public function Reset_Counter(){
-        include('includes/Femur_Connection_Vars.php');
-        $lk = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        include('includes/connection_strings.php');
+        $lk = mysqli_connect($database_host, $user, $password, $database);
         if (mysqli_connect_errno()) {
             $this->message = "Sorry. There was an issue".mysqli_connect_error();
             $this->update_completed = false;
@@ -151,8 +151,8 @@ class SQL_Select extends SQL_CRUD {
         // echo $this->query;
     }
     public function Connect_DB_execute_Close(){
-        include('includes/Femur_Connection_Vars.php');
-        $lk = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
+        include('includes/connection_strings.php');
+        $lk = mysqli_connect($database_host, $user, $password, $database);
         if (mysqli_connect_errno()) {
             $this->message = "Sorry. There was an issue".mysqli_connect_error();
             $this->update_completed = false;

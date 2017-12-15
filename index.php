@@ -10,6 +10,16 @@ date_default_timezone_set('America/New_York');
 include('includes/html_process.php');
 // Okay, so this is some of the CRUD classes i made for a project, i know they should probably be a bit more granular, but i need to meet deadlines etd (you get it lol)
 require('app-library/classes.sql.php');
+$order_num = '';
+if(isset($_POST['order_number'])):
+    $order_num = $_POST['order_number'];
+    $order_getter = New SQL_Select('','orders',' * ', '','order_id',$order_num);
+    $order_getter->Connect_DB_execute_Close();
+    $order = $order_getter->records_arr;
+    $date = $order[0]['order_date'];
+    $addr = $order[0]['shipping_address'];
+    $item_array = explode(",", $order[0]['cs_item_no']);
+endif;
 ?>
 <html lang="en">
     <head>
@@ -59,15 +69,33 @@ require('app-library/classes.sql.php');
                     <h1>Welcome to Dusty's Store! <br>Review Order</h1>
                     
                     <hr>
-                    <h3>Test</h3>
+                    <h3>Which Order is Yours?</h3>
                     <div style='height: 600px;'>
-                        <form method='post' action=''>
-                            <div style='width: 320px'>
-                                <?=Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle")?>
-                            </div>
-                        </form>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-                        <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Submit</button>
+                        <?php // Sometimes if i am force to intermigle the HTML and php. i go for the alternate syntax, it just looks much cleaner.  ?>
+                        <?php // Code should be pretty and elegant. if it not, then you're doing it wrong and over complicating things. ?>
+                        <?php  ?>
+                        <?php if(isset($_POST['order_number'])):
+                            echo $date."<br>";
+                            echo $addr."<br>";
+                            echo $order[0]['cs_item_no'];
+                            var_dump($item_array);
+                            foreach ($item_array as $value) {
+                                $item_getter = New SQL_Select('','items',' description, image_name ', '','item_id',$order_num);
+                                $item_getter->Connect_DB_execute_Close();
+                                // You were here getting the items from the DB
+                            }
+                            // $arr is now array(2, 4, 6, 8)
+                            unset($value); // break the reference with the last element
+                            ?>
+                            Please Choose your order
+                            <form method='post' action=''>
+                                <div style='width: 320px; margin-bottom: 20px;'>
+                                    <?=Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle")?>
+                                </div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+                                <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="col-sm-2 sidenav">
