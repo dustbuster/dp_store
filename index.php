@@ -40,16 +40,29 @@ include('includes/html_process.php');
         <div class="container-fluid text-center">
             <div class="row content">
                 <div class="col-sm-2 sidenav">
-                    <p><a href="#">Link</a></p>
-                    <p><a href="#">Link</a></p>
-                    <p><a href="#">Link</a></p>
+                    <div class="well">
+                        <p>Good news everybody!</p>
+                        <img class='logo-small' src='images/planetexpress.png'>
+                    </div>
+                    <div class="well">
+                        <p>The empire needs YOU! <br>Now with Flavor!</p>
+                        <img class='logo-small' src='images/bachelor.jpeg'>
+                    </div>
+                    <div class="well">
+                        <p>Tune in at 7 eastern!</p>
+                        <img class='logo-small' src='images/futurama_hypnotoad.jpg'>
+                    </div>
                 </div>
                 <div class="col-sm-8 text-left">
                     <h1>Welcome to Dusty's Store! <br>Review Order</h1>
                     
                     <hr>
                     <h3>Test</h3>
-                    <p>Lorem ipsum...</p>
+                    <div style='height: 600px;'>
+                        <form method='post' >
+
+                        </form>
+                    </div>
                 </div>
                 <div class="col-sm-2 sidenav">
                     <div class="well">
@@ -59,6 +72,10 @@ include('includes/html_process.php');
                     <div class="well">
                         <p>The empire needs YOU! <br>Enlist today!</p>
                         <img class='logo-small' src='images/enlist.jpg'>
+                    </div>
+                    <div class="well">
+                        <p>Powered by Pied Piper!</p>
+                        <img class='logo-small' src='images/pied-piper-box.png'>
                     </div>
                 </div>
             </div>
