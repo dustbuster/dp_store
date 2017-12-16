@@ -1,0 +1,138 @@
+-- MySQL dump 10.13  Distrib 5.7.19, for osx10.12 (x86_64)
+--
+-- Host: localhost    Database: orders
+-- ------------------------------------------------------
+-- Server version	5.7.19
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `items`
+--
+
+DROP TABLE IF EXISTS `items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Description` varchar(255) NOT NULL,
+  `Image_name` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `items`
+--
+
+LOCK TABLES `items` WRITE;
+/*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items` VALUES (1,'blaster','blaster.jpeg'),(2,'lightsaber','lightsaber.jpeg'),(3,'YT-1300 Corellian freighter','yt-1300.jpg'),(4,'R2Q5 Astromech Droid','R2Q5.jpg'),(5,'Kyber Crystal','kyber.jpeg'),(6,'Death Stick (pack of 20)','deathstick.jpeg'),(7,'Phaser','phaser.jpg'),(8,'Com-pin','compin.jpg'),(9,'Sonic Screwdriver','sonicscrew.jpeg'),(10,'Ghost (little light)','ghost.jpeg'),(11,'Scathlocke Auto Rifle','scathlocke.jpg'),(12,'Ninja Throwing Stars','thowingstars.jpg'),(13,'K-9 Space Modulator','k9.jpg'),(14,'Water Bottle','water.jpeg'),(15,'BB-8 Unit','BB-8.jpg');
+/*!40000 ALTER TABLE `items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `order_info`
+--
+
+DROP TABLE IF EXISTS `order_info`;
+/*!50001 DROP VIEW IF EXISTS `order_info`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `order_info` AS SELECT 
+ 1 AS `order_id`,
+ 1 AS `order_date`,
+ 1 AS `shipping_address`,
+ 1 AS `total_item_count`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `order_item`
+--
+
+DROP TABLE IF EXISTS `order_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_item` (
+  `order_item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  PRIMARY KEY (`order_item_id`),
+  KEY `item_id_fk_idx` (`item_id`),
+  CONSTRAINT `item_id_fk` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_item`
+--
+
+LOCK TABLES `order_item` WRITE;
+/*!40000 ALTER TABLE `order_item` DISABLE KEYS */;
+INSERT INTO `order_item` VALUES (1,8,7),(2,8,8),(3,8,10),(4,8,11),(5,8,12),(6,8,13),(7,10,6),(8,10,10),(9,1,1),(10,1,2),(11,1,15),(12,2,5),(13,2,10),(14,2,14),(15,3,14),(16,3,10),(17,4,1),(18,4,3),(19,4,5),(20,5,7),(21,6,9),(22,6,13),(23,6,14),(24,7,5),(25,7,6),(26,8,15),(27,9,10),(28,10,11),(29,10,12),(30,11,1),(31,11,2),(32,11,5),(33,12,14),(34,12,15);
+/*!40000 ALTER TABLE `order_item` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_date` varchar(45) DEFAULT NULL,
+  `shipping_address` varchar(255) DEFAULT NULL,
+  `num_items` int(5) DEFAULT NULL,
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'2017-12-10','800 Coconut Ct. ',3),(2,'2017-12-14','800 Coconut Ct',3),(3,'2017-12-13','129 Lubrano',2),(4,'2017-12-12','1111 Lightsaber Street',3),(5,'2017-12-11','1234 Thumbwar rd',1),(6,'2017-12-10','2 Pennsylania Ave',3),(7,'2017-12-09','99 RedBaloon Lane',2),(8,'2017-12-09','101010 Punk Lane',7),(9,'2017-12-08','41 Somewhere Lane',1),(10,'2017-12-07','1212 Ipsum Place',4),(11,'2017-12-06','555 Woodruff Xing',3),(12,'2017-12-05','12 Urban Ave',2);
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Final view structure for view `order_info`
+--
+
+/*!50001 DROP VIEW IF EXISTS `order_info`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `order_info` AS select `orders`.`order_id` AS `order_id`,`orders`.`order_date` AS `order_date`,`orders`.`shipping_address` AS `shipping_address`,`orders`.`num_items` AS `total_item_count` from `orders` order by `orders`.`order_date` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-12-16 14:22:52
