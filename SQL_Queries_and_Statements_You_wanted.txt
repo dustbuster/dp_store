@@ -1,0 +1,39 @@
+Insert Statement:
+INSERT into orders (order_date, shipping_address, num_items, cs_item_no) 
+values
+('2017-12-14','800 Coconut Ct','3'),
+('2017-12-13', '129 Lubrano','3'),
+('2017-12-12','1111 Lightsaber Street','2'),
+('2017-12-11','1234 Thumbwar rd','3'),
+
+('2017-12-10','2 Pennsylania Ave','4'),
+('2017-12-09','99 RedBaloon Lane','2'),
+('2017-12-09','101010 Punk Lane','6'),
+('2017-12-08','41 Somewhere Lane','3'),
+('2017-12-07','1212 Ipsum Place','2'),
+('2017-12-06','555 Woodruff Xing','1'),
+('2017-12-05','12 Urban Ave','3');
+
+
+Recreating a mysql DB with bash you basically do: 
+mysql shell> CREATE database orders; 
+Then: 
+bash shell> mysql -u root -p orders < orders.dump;
+
+The root being the user, orders being the database you just created and orders.dump being the dump that i will provide for you.
+Dump has not been generated yet.
+
+
+SELECTS ERRTHANG BOOM:
+Select * from orders as a join order_item as b on a.order_id = b.order_id join items as c on c.item_id = b.item_id where a.order_id = 8;
+
+
+Select The revelant things:
+Select order_date, shipping_address, num_items, Description, Image_name from orders as a join order_item as b on a.order_id = b.order_id join items as c on c.item_id = b.item_id where a.order_id = 6;
+
+// View Creation (see how to stopped trying to kill myself by making a total number?) //
+CREATE VIEW orders.Order_info AS Select order_id, order_date, shipping_address, num_items as total_item_count from orders order by order_date;
+
+
+Database creation Scripts: 
+

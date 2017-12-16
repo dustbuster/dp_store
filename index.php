@@ -79,12 +79,12 @@ endif;
                             $item_getter->Connect_DB_execute_Close();
                             $items_assoc_array = $item_getter->records_arr;
                             $num_of_rows = count($items_assoc_array);
-                            echo '<h1>Order No: '.$_POST['order_number'].'</h1>';
+                            echo '<h2>Order No: '.$_POST['order_number'].'</h2>';
+                            echo('<h2> Shipping Address: '.$items_assoc_array[0]['shipping_address'].'</h2>');
+                            echo('<h2> Order Date: '.$items_assoc_array[0]['order_date'].'</h2>');
+                            echo('<h2> Number of Items: '.count($items_assoc_array).'</h2>');
                             for($i = 0; $i < count($items_assoc_array); $i++) {
                                 echo "<hr>";
-                                echo('<h4> Order Date: '.$items_assoc_array[$i]['order_date']).'</h4><br>';
-                                echo('<h4> Shipping Address: '.$items_assoc_array[$i]['shipping_address']).'</h4><br>';
-                                echo('<h4> Number of Items: '.$items_assoc_array[$i]['num_items']).'</h4><br>';
                                 echo('<h4> Description: '.$items_assoc_array[$i]['Description']).'</h4><br>';
                                 echo('<div><img style="max-width: 25%;" src="items-images/'.$items_assoc_array[$i]['Image_name']).'" /></div>';
                             }
