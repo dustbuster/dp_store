@@ -14,3 +14,7 @@ Dump has not been generated yet.
 
 SELECTS ERRTHANG BOOM:
 Select * from orders as a join order_item as b on a.order_id = b.order_id join items as c on c.item_id = b.item_id where a.order_id = 8;
+
+
+Select The revelant things:
+Select order_date, shipping_address, num_items, Description, Image_name from orders as a join order_item as b on a.order_id = b.order_id join items as c on c.item_id = b.item_id where a.order_id = 6;

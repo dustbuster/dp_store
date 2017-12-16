@@ -3,22 +3,15 @@
 // DoublePositive Code evaluation
 // Author: dustin horning
 // Date: 12.14.2017
-// I started off with a bootstrap template.
 date_default_timezone_set('America/New_York');
-
-// I name my function files after what they do, html <- content process <- it processes other code
 include('includes/html_process.php');
 // Okay, so this is some of the CRUD classes i made for a project, i know they should probably be a bit more granular, but i need to meet deadlines etd (you get it lol)
 require('app-library/classes.sql.php');
+// instantiate vars to avoid warnings
 $order_num = '';
+// Set a var for order num
 if(isset($_POST['order_number'])):
     $order_num = $_POST['order_number'];
-    $order_getter = New SQL_Select('','orders',' * ', '','order_id',$order_num);
-    $order_getter->Connect_DB_execute_Close();
-    $order = $order_getter->records_arr;
-    $date = $order[0]['order_date'];
-    $addr = $order[0]['shipping_address'];
-    $item_array = explode(",", $order[0]['cs_item_no']);
 endif;
 ?>
 <html lang="en">
@@ -66,36 +59,37 @@ endif;
                     </div>
                 </div>
                 <div class="col-sm-8 text-left">
-                    <h1>Welcome to Dusty's Store! <br>Review Order</h1>
-                    
+                    <h1>Order Review: </h1>
                     <hr>
-                    <h3>Which Order is Yours?</h3>
-                    <div style='height: 600px;'>
-                        <?php // Sometimes if i am force to intermigle the HTML and php. i go for the alternate syntax, it just looks much cleaner.  ?>
-                        <?php // Code should be pretty and elegant. if it not, then you're doing it wrong and over complicating things. ?>
-                        <?php  ?>
-                        <?php if(isset($_POST['order_number'])):
-                            echo $date."<br>";
-                            echo $addr."<br>";
-                            echo $order[0]['cs_item_no'];
-                            var_dump($item_array);
-                            foreach ($item_array as $value) {
-                                $item_getter = New SQL_Select('','items',' description, image_name ', '','item_id',$order_num);
-                                $item_getter->Connect_DB_execute_Close();
-                                // You were here getting the items from the DB
+                    <h3>Check Your Orders:</h3>
+                    <div style='min-height: 600px; margin-bottom: 50px;'>
+                        Please Choose your order
+                        <form method='post' action=''>
+                            <div style='width: 320px; margin-bottom: 20px;'>
+                                <?=Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle")?>
+                            </div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+                            <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+                        </form>
+                        <?php 
+                        if(isset($_POST['order_number'])):
+
+                            // Since this query is a bit more complicated than 'select x x x from table' then i am going to use the override to add the query in
+                            $item_getter = New SQL_Select("Select order_date, shipping_address, num_items, Description, Image_name from orders as a join order_item as b on a.order_id = b.order_id join items as c on c.item_id = b.item_id where a.order_id = '".$order_num."';",'','', '','','');
+                            $item_getter->Connect_DB_execute_Close();
+                            $items_assoc_array = $item_getter->records_arr;
+                            $num_of_rows = count($items_assoc_array);
+                            echo '<h1>Order No: '.$_POST['order_number'].'</h1>';
+                            for($i = 0; $i < count($items_assoc_array); $i++) {
+                                echo "<hr>";
+                                echo('<h4> Order Date: '.$items_assoc_array[$i]['order_date']).'</h4><br>';
+                                echo('<h4> Shipping Address: '.$items_assoc_array[$i]['shipping_address']).'</h4><br>';
+                                echo('<h4> Number of Items: '.$items_assoc_array[$i]['num_items']).'</h4><br>';
+                                echo('<h4> Description: '.$items_assoc_array[$i]['Description']).'</h4><br>';
+                                echo('<div><img style="max-width: 25%;" src="items-images/'.$items_assoc_array[$i]['Image_name']).'" /></div>';
                             }
-                            // $arr is now array(2, 4, 6, 8)
-                            unset($value); // break the reference with the last element
-                            ?>
-                            Please Choose your order
-                            <form method='post' action=''>
-                                <div style='width: 320px; margin-bottom: 20px;'>
-                                    <?=Pick_order_Number_DD("order_number","dd-arr dir-control sub-ttle")?>
-                                </div>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-                                <button type="submit" class="btn btn-primary submitBtn">Submit</button>
-                            </form>
-                        <?php endif; ?>
+                        endif;
+                        ?>
                     </div>
                 </div>
                 <div class="col-sm-2 sidenav">
