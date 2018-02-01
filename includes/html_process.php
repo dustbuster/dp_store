@@ -1,4 +1,6 @@
 <?php
+// Made a little file to handle header and footer JS and CSS includes
+
 function CSS_Header($title) {
     $css = '';
     $css .= '<title>'.$title.'</title>';
