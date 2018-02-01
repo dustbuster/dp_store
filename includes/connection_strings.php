@@ -1,6 +1,6 @@
 <?php
 $database = 'orders';
 $user = 'root';
-$password = 'dgfsty16';
+$password = 'some_password12';
 $database_host = 'localhost';
 ?>
