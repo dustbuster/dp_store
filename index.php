@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <?php
-// DoublePositive Code evaluation
 // Author: dustin horning
 // Date: 12.14.2017
 date_default_timezone_set('America/New_York');
 include('includes/html_process.php');
-// Okay, so this is some of the CRUD classes i made for a project, i know they should probably be a bit more granular, but i need to meet deadlines etd (you get it lol)
 require('app-library/classes.sql.php');
-// instantiate vars to avoid warnings
 $order_num = '';
 // Set a var for order num
 if(isset($_POST['order_number'])):
@@ -16,7 +13,7 @@ endif;
 ?>
 <html lang="en">
     <head>
-        <?=CSS_Header('doublepositive')?>
+        <?=CSS_Header("Dusty's Store!")?>
     </head>
     <body>
         <nav class="navbar navbar-inverse">
@@ -37,7 +34,7 @@ endif;
                         <li><a href="#">Nothing</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello Matt!<br></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hello User!<br></a></li>
                     </ul>
                 </div>
             </div>
